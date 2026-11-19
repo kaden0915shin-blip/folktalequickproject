@@ -1,15 +1,25 @@
 import time
-lives = int(3)
+import random
 def hearts():
+    global lives
+    global potion
+    if potion >= 1:
+        print("(Life damage cancelled)")
+        potion -= 1
+        return
     if lives == 3:
         print("You get scratched. (-1 Life, 2/3 remaining)")
         lives -= 1
+        return
     elif lives == 2:
         print("You are badly wounded. Consider being more careful (-1 Life, 1/3 Remaining)")
         lives -= 1
+        return
     elif lives == 1:
         print("You die. Game over.")
-    
+        exit()
+potion = 0
+rage = 0
 print("You see a door blocking your access to a cave")
 for i in range(3):
     time.sleep(0.1)
@@ -76,7 +86,7 @@ if superkey == 1:
     time.sleep(0.2)
     print("The door loosens. Solve the puzzle to open it.")
     time.sleep(0.2)
-    print("What is tall when it's young, and short when it's old?")
+    print("What is tall when it's young, and short when it's old? (lowercase only)")
     time.sleep(0.2)
     while True:
         answer = input("Answer: ")
@@ -178,11 +188,3 @@ while True:
             hearts()
     
 
-
-    try:
-        equipment = int(input("1: Key, 2: Sword, 3: Torch \n"))
-        break
-    except ValueError:
-        print("Use numbers.")
-if equipment == 1:
-    print("You unlock the door. Simple.")
